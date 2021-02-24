@@ -1,0 +1,25 @@
+#include <windows.h>
+MAINICON ICON "grid.ico"
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,1
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+FILEFLAGS (VS_FF_PRERELEASE)
+FILEOS VOS_DOS_WINDOWS32
+FILETYPE VFT_APP
+FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "0x0409"
+        BEGIN
+            VALUE "CompanyName",           "GProject Revolution"
+            VALUE "ProductName",           "JokeManager"
+            VALUE "ProductVersion",        "1.0"
+            VALUE "OriginalFilename",      "Auto_Blue_Grid.exe"
+            VALUE "InternalName",          "Auto_Blue_Grid.exe"
+            VALUE "FileDescription",       "Blue Grid display for Windows"
+            VALUE "FileVersion",           "1.0"
+        END
+    END
+END
