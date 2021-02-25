@@ -17,6 +17,7 @@
 class App
 {
     static constexpr std::array<sf::Keyboard::Key,2> combination = {sf::Keyboard::Key::LControl,sf::Keyboard::Key::L};
+    static constexpr std::array<sf::Keyboard::Key,2> selectKeys = {sf::Keyboard::Key::Num1,sf::Keyboard::Key::Num2};
     static constexpr std::array<int,3> lineColor = {0,0,255};
     static constexpr std::pair<int,int> from = {100,100};
     static constexpr std::pair<int,int> to = {1500,800};
@@ -28,19 +29,22 @@ class App
     /**
       * Waits until "Ctrl + L" is pressed, then calls "App::display()".
       *
-      * @relatesalso App::display().
+      * @relatesalso App::display() and
+      *              HelperFunctions::wait().
       *
       **/
     void waitForKeyPress();
     /**
-      * Takes a screenshot and displays it in a new
-      * window with a blue grid over it.
+      * Takes a screenshot of the screen with the given number
+      * and displays it in a new window with a blue grid over it.
       *
+      * @param The 0-indexed number of the screen to capture as an int.
       * @warning Overrides "/tmp.bmp" if exists.
-      * @relatesalso HelperFunctions::SaveBitmap().
+      * @relatesalso HelperFunctions::saveScreenshot() and
+      *              HelperFunctions::maximizeSFMLWindow().
       *
       **/
-    void display();
+    void display(int screenNum);
 public:
     /**
       * Runs the app by calling "App::waitForKeyPress()".

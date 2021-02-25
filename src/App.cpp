@@ -2,6 +2,7 @@
 #include "../include/HelperFunctions.hpp"
 #include <exception>
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 const std::pair<int,int> App::windowSize = {sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height};
 
@@ -15,19 +16,30 @@ void App::waitForKeyPress()
     while(true)
     {
         bool doDisplay = true;
+        int screenNumToDisplay = 0;
         for(sf::Keyboard::Key key: combination)
             if(!sf::Keyboard::isKeyPressed(key))
                 doDisplay = false;
         if(doDisplay)
-            this->display();
+        {
+            for(decltype(selectKeys)::size_type i = 0; i < selectKeys.size(); i++)
+            {
+                if(sf::Keyboard::isKeyPressed(selectKeys[i]))
+                {
+                    screenNumToDisplay = i;
+                    break;
+                }
+            }
+            this->display(screenNumToDisplay);
+        }
         HelperFunctions::wait(50);
     }
 }
 
-void App::display()
+void App::display(int screenNumToDisplay)
 {
     wchar_t filenameAsWCharPtr[] = L"tmp.bmp";
-    HelperFunctions::saveScreenshot(filenameAsWCharPtr);
+    HelperFunctions::saveScreenshot(filenameAsWCharPtr,screenNumToDisplay);
 
     sf::RenderWindow window(sf::VideoMode(windowSize.first,windowSize.second),"Screenshot");
     HelperFunctions::maximizeSFMLWindow(window);

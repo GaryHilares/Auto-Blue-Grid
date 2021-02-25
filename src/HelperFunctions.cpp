@@ -1,4 +1,7 @@
 #include "../include/HelperFunctions.hpp"
+#ifdef WIN32
+#include <windows.h>
+#include <stdexcept>
 
 namespace HelperFunctions
 {
@@ -12,11 +15,13 @@ namespace HelperFunctions
     }
     int getScreensAmount()
     {
-       static const int screensAmount = GetSystemMetrics(SM_CMONITORS);
-       return screensAmount;
+        return GetSystemMetrics(SM_CMONITORS);
     }
-    void saveScreenshot(const WCHAR *wPath)
+    void saveScreenshot(const wchar_t* wPath, int screenNum)
     {
+        int screensAmount = getScreensAmount();
+        if(screenNum >= screensAmount)
+            throw std::out_of_range("Screen number is out of valid screens range");
         BITMAPFILEHEADER bfHeader;
         BITMAPINFOHEADER biHeader;
         BITMAPINFO bInfo;
@@ -28,7 +33,7 @@ namespace HelperFunctions
         BYTE *bBits = NULL;
         DWORD cbBits, dwWritten = 0;
         HANDLE hFile;
-        INT x = GetSystemMetrics(SM_XVIRTUALSCREEN)/getScreensAmount();
+        INT x = GetSystemMetrics(SM_XVIRTUALSCREEN);
         INT y = GetSystemMetrics(SM_YVIRTUALSCREEN);
 
         ZeroMemory(&bfHeader, sizeof(BITMAPFILEHEADER));
@@ -40,8 +45,9 @@ namespace HelperFunctions
         hTempBitmap = GetCurrentObject(hDC, OBJ_BITMAP);
         GetObjectW(hTempBitmap, sizeof(BITMAP), &bAllDesktops);
 
-        lWidth = bAllDesktops.bmWidth/getScreensAmount();
+        lWidth = bAllDesktops.bmWidth/screensAmount;
         lHeight = bAllDesktops.bmHeight;
+        x += lWidth * screenNum;
 
         DeleteObject(hTempBitmap);
 
@@ -76,3 +82,4 @@ namespace HelperFunctions
         DeleteObject(hBitmap);
     }
 }
+#endif //WIN32

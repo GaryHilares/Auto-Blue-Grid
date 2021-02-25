@@ -1,4 +1,3 @@
-#include <windows.h>
 #include <SFML/Window.hpp>
 
 namespace HelperFunctions
@@ -29,13 +28,14 @@ namespace HelperFunctions
     int getScreensAmount();
     /**
      * saveScreenshot
-     * Takes a screenshot and saves it to the given path.
+     * Takes a screenshot of any screen and saves it to the given path.
      *
-     * @param A path to save the screenshot as a WCHAR*.
+     * @param The path to save the screenshot as a wchar_t*.
+     * @param The 0-indexed number of the screen to capture as an int.
      * @author Govind Parmar.
      * @note Extracted from https://stackoverflow.com/a/53421510.
      *       Includes minor modifications
      *
      **/
-    void saveScreenshot(const WCHAR* wPath);
+    void saveScreenshot(const wchar_t* wPath, int screenNum);
 }
