@@ -3,6 +3,8 @@
 #include <exception>
 #include <SFML/Graphics.hpp>
 
+const std::pair<int,int> App::windowSize = {sf::VideoMode::getDesktopMode().width,sf::VideoMode::getDesktopMode().height};
+
 void App::run()
 {
     this->waitForKeyPress();
@@ -36,6 +38,7 @@ void App::display()
     if(!texture.loadFromFile("tmp.bmp"))
         throw std::exception();
     sf::Sprite screenshot(texture);
+    screenshot.setScale(float(window.getSize().x)/screenshot.getLocalBounds().width,float(window.getSize().y)/screenshot.getLocalBounds().height);
     window.requestFocus();
     while(window.isOpen())
     {
