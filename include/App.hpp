@@ -7,6 +7,8 @@
   * @brief When "Ctrl + L" is pressed: Takes a screenshot and displays it
   *        in a new window with a blue grid over it.
   *
+  *        This application make use of SFML, WinAPI and the C++ Standard Library.
+  *
   * @author GProject Revolution.
   * @date Started: 23-02-2021.
   *       Finished: 24-02-2021.
