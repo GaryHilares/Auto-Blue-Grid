@@ -2,6 +2,19 @@
 
 namespace HelperFunctions
 {
+    void wait(int ms)
+    {
+        Sleep(ms);
+    }
+    void maximizeSFMLWindow(sf::Window& window)
+    {
+        ShowWindow(window.getSystemHandle(), SW_MAXIMIZE);
+    }
+    int getScreensAmount()
+    {
+       static const int screensAmount = GetSystemMetrics(SM_CMONITORS);
+       return screensAmount;
+    }
     void saveScreenshot(const WCHAR *wPath)
     {
         BITMAPFILEHEADER bfHeader;
@@ -15,7 +28,7 @@ namespace HelperFunctions
         BYTE *bBits = NULL;
         DWORD cbBits, dwWritten = 0;
         HANDLE hFile;
-        INT x = GetSystemMetrics(SM_XVIRTUALSCREEN);
+        INT x = GetSystemMetrics(SM_XVIRTUALSCREEN)/getScreensAmount();
         INT y = GetSystemMetrics(SM_YVIRTUALSCREEN);
 
         ZeroMemory(&bfHeader, sizeof(BITMAPFILEHEADER));
@@ -27,7 +40,7 @@ namespace HelperFunctions
         hTempBitmap = GetCurrentObject(hDC, OBJ_BITMAP);
         GetObjectW(hTempBitmap, sizeof(BITMAP), &bAllDesktops);
 
-        lWidth = bAllDesktops.bmWidth;
+        lWidth = bAllDesktops.bmWidth/getScreensAmount();
         lHeight = bAllDesktops.bmHeight;
 
         DeleteObject(hTempBitmap);

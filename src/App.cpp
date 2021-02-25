@@ -20,6 +20,7 @@ void App::waitForKeyPress()
                 doDisplay = false;
         if(doDisplay)
             this->display();
+        HelperFunctions::wait(50);
     }
 }
 
@@ -29,7 +30,7 @@ void App::display()
     HelperFunctions::saveScreenshot(filenameAsWCharPtr);
 
     sf::RenderWindow window(sf::VideoMode(windowSize.first,windowSize.second),"Screenshot");
-    ShowWindow(window.getSystemHandle(), SW_MAXIMIZE);
+    HelperFunctions::maximizeSFMLWindow(window);
     sf::Image icon;
     if(!icon.loadFromFile("icon.png"))
         throw std::exception();
@@ -40,6 +41,7 @@ void App::display()
     sf::Sprite screenshot(texture);
     screenshot.setScale(float(window.getSize().x)/screenshot.getLocalBounds().width,float(window.getSize().y)/screenshot.getLocalBounds().height);
     window.requestFocus();
+    window.setFramerateLimit(20);
     while(window.isOpen())
     {
         sf::Event event;
