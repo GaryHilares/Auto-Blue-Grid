@@ -8,6 +8,10 @@
   <img alt="badge-codesize" src="https://img.shields.io/github/languages/code-size/GaryHilares/Auto-Blue-Grid?style=for-the-badge">
 </p>
 
+<p align="center">
+  <img alt="Auto Blue Grid's logo" src="https://user-images.githubusercontent.com/46727048/236912783-c8e95583-3296-48c8-970c-4b38ec10d4cd.png">
+</p>
+
 ## Useful links
 - [Project's Style Guide (Webkit)](https://webkit.org/code-style-guidelines/).
 
