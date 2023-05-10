@@ -13,7 +13,7 @@
 </p>
 
 ## Useful links
-- [Project's Style Guide (Webkit)](https://webkit.org/code-style-guidelines/).
+- [Project's Style Guide (Webkit)](https://webkit.org/code-style-guidelines/)
 
 ## What is Auto Blue Grid?
 Auto Blue Grid is a desktop application that takes a screenshot when you press "Ctrl + L" and displays it in a new window with a blue grid.
